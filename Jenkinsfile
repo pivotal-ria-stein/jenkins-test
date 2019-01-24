@@ -10,7 +10,9 @@ pipeline {
         }
         stage('Build') {
           steps {
-            sh '''./gradlew build -x test
+            sh '''echo `ls`
+echo `pwd`
+./gradlew build -x test
 '''
             stash(includes: 'build/libs/**', name: 'service-jar')
           }
