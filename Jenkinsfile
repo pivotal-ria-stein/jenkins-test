@@ -2,22 +2,29 @@ pipeline {
   agent any
   stages {
     stage('Start') {
-      steps {
-        withCredentials(bindings: [[$class: 'UsernamePasswordMultiBinding', credentialsId: 'pcf-user',
-                        usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
-          sh '''
-          if [ "$USERNAME" == "george" ]
-            then
-            echo "match username"
-           fi
-           if [ "$PASSWORD" == "michael" ]
-            then
-            echo "match password"
-           fi
-          '''
+      parallel {
+        stage('Start') {
+          steps {
+            sh 'echo "done"'
+          }
         }
-
-        sh 'echo "done"'
+        stage('Build') {
+          steps {
+            sh '''./gradlew build -x test
+'''
+            stash(includes: 'build/libs/**', name: 'service-jar')
+          }
+        }
+      }
+    }
+    stage('Deploy') {
+      steps {
+        unstash 'service-jar'
+        sh '''echo "build libs"
+echo `ls build/libs`
+echo "============"
+echo "base dir"
+echo `ls`'''
       }
     }
   }
