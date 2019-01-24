@@ -6,7 +6,7 @@ pipeline {
         stage('Start') {
           steps {
             script {
-              properties([pipelineTriggers([[$class: 'GitHubPushTrigger'], pollSCM('H/1 * * * *')])])
+              properties([pipelineTriggers([[$class: 'GitHubPushTrigger'], pollSCM('1 * * * *')])])
             }
             sh 'echo "done"'
           }
