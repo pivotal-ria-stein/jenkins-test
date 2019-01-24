@@ -3,8 +3,11 @@ pipeline {
   stages {
     stage('Start') {
       steps {
-        sh '''echo "starting..."
-echo "$pcf-user"'''
+       withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'pcf-user',
+usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+
+sh 'echo uname=$USERNAME pwd=$PASSWORD'
+ }
       }
     }
   }
