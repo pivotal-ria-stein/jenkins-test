@@ -4,8 +4,8 @@ pipeline {
     stage('Start') {
       parallel {
         stage('Start') {
-          properties([pipelineTriggers([[$class: 'GitHubPushTrigger'], pollSCM('H/1 * * * *')])])
           steps {
+            properties([pipelineTriggers([[$class: 'GitHubPushTrigger'], pollSCM('H/1 * * * *')])])
             sh 'echo "done"'
           }
         }
