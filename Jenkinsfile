@@ -3,11 +3,12 @@ pipeline {
   stages {
     stage('Start') {
       steps {
-       withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'pcf-user',
-usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+        withCredentials(bindings: [[$class: 'UsernamePasswordMultiBinding', credentialsId: 'pcf-user',
+        usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+          sh 'echo uname=$USERNAME pwd=$PASSWORD'
+        }
 
-sh 'echo uname=$USERNAME pwd=$PASSWORD'
- }
+        sh 'echo "done"'
       }
     }
   }
