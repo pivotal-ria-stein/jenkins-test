@@ -4,7 +4,7 @@ pipeline {
     stage('Start') {
       steps {
         sh '''echo "starting..."
-echo $pcf-user'''
+echo "$pcf-user"'''
       }
     }
   }
