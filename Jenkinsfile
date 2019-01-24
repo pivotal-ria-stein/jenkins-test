@@ -4,13 +4,13 @@ pipeline {
     stage('Start') {
       steps {
         withCredentials(bindings: [[$class: 'UsernamePasswordMultiBinding', credentialsId: 'pcf-user',
-                usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+                        usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
           sh '''
-          if ["$USERNAME" == "george"]
+          if [ "$USERNAME" == "george" ]
             then
             echo "match username"
            fi
-           if ["$PASSWORD" == "michael"]
+           if [ "$PASSWORD" == "michael" ]
             then
             echo "match password"
            fi
