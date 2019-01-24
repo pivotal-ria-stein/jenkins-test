@@ -1,0 +1,5 @@
+#vcap:
+#  services:
+#    eqb-onboarding-credhub:
+#      credentials:
+#        user: abc
