@@ -2,9 +2,9 @@ pipeline {
   agent any
   stages {
     stage('Start') {
-      properties([pipelineTriggers([[$class: 'GitHubPushTrigger'], pollSCM('H/1 * * * *')])])
       parallel {
         stage('Start') {
+          properties([pipelineTriggers([[$class: 'GitHubPushTrigger'], pollSCM('H/1 * * * *')])])
           steps {
             sh 'echo "done"'
           }
